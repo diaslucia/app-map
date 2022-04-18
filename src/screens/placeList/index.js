@@ -4,6 +4,7 @@ import { FlatList } from 'react-native';
 /* Styles */
 import styles from "./styles";
 
+/* Redux */
 import { useSelector } from "react-redux";
 
 /* Components */
@@ -18,18 +19,19 @@ const PlaceList = ({ navigation }) => {
 
     const renderItem = ({ item }) => {
         <PlaceItem
-        name={item.name}
-        address="Avenida Siempre Vivas"
-        onSelect={() => onSelectDetail()}
+            name={item.name}
+            address="Avenida Siempre Vivas"
+            onSelect={() => onSelectDetail()}
         />
     }
 
+    console.warn(places);
+
     return (
         <FlatList
-        style={styles.container}
-        data={places}
-        keyExtractor={item => item.id}
-        renderItem={renderItem}
+            data={places}
+            keyExtractor={item => item.id}
+            renderItem={renderItem}
         />
     );
 }

@@ -7,7 +7,7 @@ import { colors } from "../../constants/theme";
 
 /* Redux */
 import { useDispatch } from "react-redux";
-import { addPlace } from "../../store/action/placeAction";
+import { placeAction } from "../../store/action/index";
 
 const NewPlace = ({ navigation }) => {
     const dispatch = useDispatch();
@@ -16,7 +16,7 @@ const NewPlace = ({ navigation }) => {
     const handleNameChange = text => setName(text);
     
     const handleSavePlace = () => {
-        dispatch(addPlace(name));
+        dispatch(placeAction.addPlace(name));
         navigation.navigate("Place");
     }
 
