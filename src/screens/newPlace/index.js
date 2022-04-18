@@ -1,14 +1,41 @@
-import React from 'react';
-import { View, Text } from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, TextInput, ScrollView, Button } from 'react-native';
 
 /* Styles */
 import styles from "./styles";
+import { colors } from "../../constants/theme";
 
-const NewPlace = () => {
+/* Redux */
+import { useDispatch } from "react-redux";
+import { addPlace } from "../../store/action/placeAction";
+
+const NewPlace = ({ navigation }) => {
+    const dispatch = useDispatch();
+    const [name, setName] = useState("");
+
+    const handleNameChange = text => setName(text);
+    
+    const handleSavePlace = () => {
+        dispatch(addPlace(name));
+        navigation.navigate("Place");
+    }
+
     return (
-        <View style={styles.container}>
-            <Text>Map</Text>
-        </View>
+        <ScrollView style={styles.container}>
+            <View style={styles.innerContainer}>
+                <Text style={styles.label}>Dirección</Text>
+                <TextInput
+                    style={styles.input}
+                    onChangeText={handleNameChange}
+                    value={name}
+                />
+                <Button
+                    title="Guardar dirección"
+                    onPress={() => handleSavePlace()}
+                    color={colors.lightMain}
+                />
+            </View>
+        </ScrollView>
     );
 }
 

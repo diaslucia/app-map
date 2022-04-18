@@ -1,14 +1,36 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { FlatList } from 'react-native';
 
 /* Styles */
 import styles from "./styles";
 
-const PlaceList = () => {
+import { useSelector } from "react-redux";
+
+/* Components */
+import PlaceItem from "../../components/molecules/placeItem/index";
+
+const PlaceList = ({ navigation }) => {
+    const places = useSelector(state => state.places.places);
+
+    const onSelectDetail = () => {
+        navigation.navigate("PlaceDetail");
+    }
+
+    const renderItem = ({ item }) => {
+        <PlaceItem
+        name={item.name}
+        address="Avenida Siempre Vivas"
+        onSelect={() => onSelectDetail()}
+        />
+    }
+
     return (
-        <View style={styles.container}>
-            <Text>Este es la place list</Text>
-        </View>
+        <FlatList
+        style={styles.container}
+        data={places}
+        keyExtractor={item => item.id}
+        renderItem={renderItem}
+        />
     );
 }
 
