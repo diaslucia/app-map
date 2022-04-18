@@ -10,6 +10,7 @@ import PlaceList from "../screens/placeList/index";
 import PlaceDetail from "../screens/placeDetail/index";
 import Map from "../screens/map/index";
 import NewPlace from "../screens/newPlace/index";
+import HeaderButton from "../components/atoms/headerButton/index";
 
 const MainStack = createNativeStackNavigator();
 
@@ -26,7 +27,15 @@ const MainNavigator = () => {
                 },
             }}
         >
-            <MainStack.Screen name="Place" component={PlaceList} options={{ title: "Place" }}/>
+            <MainStack.Screen
+                name="Place"
+                component={PlaceList}
+                options={({ navigation }) => (
+                    {
+                        title: "Places",
+                        headerRight: () => <HeaderButton navigation={navigation}/>
+                    }
+                )}/>
             <MainStack.Screen name="PlaceDetail" component={PlaceDetail} options={{ title: "Place Detail" }}/>
             <MainStack.Screen name="NewPlace" component={NewPlace} options={{ title: "New Place" }}/>
             <MainStack.Screen name="Map" component={Map} options={{ title: "Map" }}/>
