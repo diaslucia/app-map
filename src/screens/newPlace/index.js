@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, ScrollView, Button } from 'react-native';
+import { View, Text, TextInput, Button } from 'react-native';
 
 /* Styles */
 import styles from "./styles";
@@ -29,22 +29,23 @@ const NewPlace = ({ navigation }) => {
     }
 
     return (
-        <ScrollView style={styles.container}>
+        <View style={styles.container}>
             <View style={styles.innerContainer}>
-                <Text style={styles.label}>Dirección</Text>
+                <ImageSelector style={styles.image} onImage={onHandlerImageTaken}/>
                 <TextInput
                     style={styles.input}
                     onChangeText={handleNameChange}
                     value={name}
+                    placeholder="Nombre del lugar"
+                    placeholderTextColor={colors.strongSecondary}
                 />
-                <ImageSelector onImage={onHandlerImageTaken}/>
+            </View>
                 <Button
                     title="Guardar dirección"
                     onPress={() => handleSavePlace()}
                     color={colors.lightMain}
                 />
-            </View>
-        </ScrollView>
+        </View>
     );
 }
 

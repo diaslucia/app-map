@@ -43,7 +43,7 @@ const ImageSelector = (props) => {
             <View style={styles.preview}>
                 {   !pickedUrl
                     ?
-                    (<Text>No seleccionaste una foto</Text>)
+                    (<Text style={styles.text}>No seleccionaste una foto</Text>)
                     :
                     (<Image
                     style={styles.image}
@@ -53,7 +53,7 @@ const ImageSelector = (props) => {
             </View>
             <Button
                 title="Tomar Foto"
-                color={colors.lightMain}
+                color={colors.lightSecondary}
                 onPress={handlerTakeImage}
             />
         </View>

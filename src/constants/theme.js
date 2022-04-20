@@ -9,8 +9,8 @@ export const colors = {
 }
 
 export const fontSize = {
-    title: 20,
-    text: 16,
+    title: 18,
+    text: 14,
     button: 18,
     large: 35,
     error: 12,
@@ -23,7 +23,7 @@ export const padding = {
 }
 
 export const margin = {
-    small: 10,
-    medium: 20,
-    large: 30
+    small: 5,
+    medium: 15,
+    large: 20
 }

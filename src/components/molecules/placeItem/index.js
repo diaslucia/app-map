@@ -8,7 +8,7 @@ const PlaceItem = ({ name, image, address, onSelect }) => {
     return(
         <TouchableOpacity onPress={() => onSelect()} style={styles.container}>
              <Image source={{uri: image}} style={styles.image} />
-            <View style={styles.detailsContainer}>
+            <View style={styles.details}>
                 <Text style={styles.name}>{name}</Text>
                 <Text style={styles.address}>{address}</Text>
             </View>

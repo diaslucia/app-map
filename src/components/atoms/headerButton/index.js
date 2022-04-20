@@ -1,5 +1,5 @@
 import React from "react";
-import { TouchableOpacity, Text } from "react-native";
+import { TouchableOpacity, Text, View } from "react-native";
 
 /* Styles */
 import styles from "./styles";
@@ -11,7 +11,9 @@ const HeaderButton = ({ navigation }) => {
 
     return(
         <TouchableOpacity onPress={() => onPress()}>
-            <Text style={styles.text}>New</Text>
+            <View style={styles.container}>
+                <Text style={styles.text}>+</Text>
+            </View>
         </TouchableOpacity>
     );
 }

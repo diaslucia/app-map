@@ -1,21 +1,23 @@
 import { StyleSheet } from "react-native";
-import { colors, fontSize, margin } from "../../constants/theme";
+import { colors, padding, margin, fontSize } from "../../constants/theme";
 
 const styles = StyleSheet.create({
     container: {
+        flex: 1,
+        justifyContent: "space-between",
         marginHorizontal: margin.medium,
         marginVertical: margin.medium,
     },
-    label: {
-        fontSize: fontSize.text,
-        color: colors.text,
-        fontWeight: "bold",
+    innerContainer: {
+        flex: 1,
     },
     input: {
-        borderBottomWidth: 1,
-        borderBottomColor: colors.lightMain,
-        marginVertical: margin.medium,
-    }
+        borderWidth: 1,
+        borderColor: colors.lightSecondary,
+        marginVertical: margin.large,
+        padding: padding.small,
+        fontSize: fontSize.text,
+    },
 })
 
 export default styles;

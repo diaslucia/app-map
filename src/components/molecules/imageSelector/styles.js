@@ -1,22 +1,23 @@
 import { StyleSheet } from "react-native";
-import { colors } from "../../../constants//theme";
+import { colors, fontSize } from "../../../constants//theme";
 
 const styles = StyleSheet.create({
-    container: {
-      alignItems: 'center',
-    },
     preview: {
       width: "100%",
       height: 200,
       marginBottom: 10,
       justifyContent: "center",
       alignItems: 'center',
-      borderColor: colors.lightMain,
+      borderColor: colors.lightSecondary,
       borderWidth: 1,
     },
     image: {
       width: "100%",
       height: "100%",
+    },
+    text: {
+      color: colors.strongSecondary,
+      fontSize: fontSize.text,
     }
 })
 
