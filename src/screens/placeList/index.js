@@ -1,31 +1,38 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { FlatList } from 'react-native';
 
 /* Styles */
 import styles from "./styles";
 
 /* Redux */
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { placeAction } from "../../store/action/index";
 
 /* Components */
 import PlaceItem from "../../components/molecules/placeItem/index";
 
 const PlaceList = ({ navigation }) => {
+    const dispatch = useDispatch();
     const places = useSelector(state => state.places.places);
 
+    useEffect(() => {
+        dispatch(placeAction.loadPlace());
+      }, []);
+
     const onSelectDetail = () => {
-        navigation.navigate("PlaceDetail");
-    }
+        navigation.navigate('PlaceDetail');
+    };
 
-    const renderItem = ({ item }) => {
+    const renderItem = ({item}) => (
         <PlaceItem
-            name={item.name}
-            address="Avenida Siempre Vivas"
-            onSelect={() => onSelectDetail()}
+          name={item.name}
+          address={item.address}
+          onSelect={() => onSelectDetail()}
+          image={item.image}
+          latitude={item.latitude}
+          longitude={item.longitude}
         />
-    }
-
-    console.warn(places);
+    );
 
     return (
         <FlatList
