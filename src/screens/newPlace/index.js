@@ -7,17 +7,25 @@ import { colors } from "../../constants/theme";
 
 /* Redux */
 import { useDispatch } from "react-redux";
-import { placeAction } from "../../store/action/index";
+import * as placeAction from "../../store/action/placeAction";
+
+/* Components */
+import ImageSelector from "../../components/molecules/imageSelector/index";
 
 const NewPlace = ({ navigation }) => {
     const dispatch = useDispatch();
     const [name, setName] = useState("");
+    const [selectedImage, setSelectedImage] = useState();
 
     const handleNameChange = text => setName(text);
     
     const handleSavePlace = () => {
-        dispatch(placeAction.addPlace(name));
+        dispatch(placeAction.addPlace(name, selectedImage));
         navigation.navigate("Place");
+    }
+
+    const onHandlerImageTaken = path => {
+        setSelectedImage(path);
     }
 
     return (
@@ -29,6 +37,7 @@ const NewPlace = ({ navigation }) => {
                     onChangeText={handleNameChange}
                     value={name}
                 />
+                <ImageSelector onImage={onHandlerImageTaken}/>
                 <Button
                     title="Guardar dirección"
                     onPress={() => handleSavePlace()}

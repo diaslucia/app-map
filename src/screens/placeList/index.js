@@ -17,13 +17,14 @@ const PlaceList = ({ navigation }) => {
         navigation.navigate("PlaceDetail");
     }
 
-    const renderItem = ({ item }) => {
+    const renderItem = ({ item }) => (
         <PlaceItem
             name={item.name}
+            image={item.image}
             address="Avenida Siempre Vivas"
             onSelect={() => onSelectDetail()}
         />
-    }
+    )
 
     console.warn(places);
 
