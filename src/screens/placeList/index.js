@@ -19,9 +19,14 @@ const PlaceList = ({ navigation }) => {
         navigation.navigate("PlaceDetail");
     }
 
+    const onRemovePlace = (id) => {
+        dispatch(addressAction.removePlace(id));
+        dispatch(addressAction.loadAddress());
+    }
+
     useEffect(() => {
         dispatch(addressAction.loadAddress());
-    }, [])
+    }, []);
 
     const renderItem = ({ item }) => (
         <PlaceItem
@@ -29,6 +34,7 @@ const PlaceList = ({ navigation }) => {
             image={item.image}
             address="Avenida Siempre Vivas"
             onSelect={() => onSelectDetail()}
+            onPress={() => onRemovePlace(item.id)}
         />
     )
 

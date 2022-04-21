@@ -1,11 +1,12 @@
 export const ADD_PLACE = "ADD_PLACE";
 export const LOAD_PLACE = "LOAD_PLACE";
+export const REMOVE_PLACE = "REMOVE_PLACE";
 
 /* Camera */
 import * as FileSystem from "expo-file-system";
 
 /* SQLite */
-import { insertAddress, fetchAddress } from "../../db/index";
+import { insertAddress, fetchAddress, removeAddress } from "../../db/index";
 
 export const addPlace = ( name, image ) => {
     return async dispatch => {
@@ -36,6 +37,17 @@ export const loadAddress = () => {
         try {
             const result = await fetchAddress()
             dispatch({ type: LOAD_PLACE, places: result.rows._array })
+        } catch (err) {
+            throw err
+        }
+    }
+}
+
+export const removePlace = (id) => {
+    return async dispatch => {
+        try {
+            const result = await removeAddress(id)
+            dispatch({ type: REMOVE_PLACE, payload: { id: result.insertId } })
         } catch (err) {
             throw err
         }

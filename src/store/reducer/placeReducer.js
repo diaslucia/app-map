@@ -1,4 +1,4 @@
-import { ADD_PLACE, LOAD_PLACE } from "../action/placeAction";  
+import { ADD_PLACE, LOAD_PLACE, REMOVE_PLACE } from "../action/placeAction";  
 
 /* Models */
 import Place from "../../models/place";
@@ -24,6 +24,11 @@ export default (state = initialState, action) => {
                     item.image,
                 ))
             }
+        case REMOVE_PLACE:
+        return{
+            ...state,
+            places: state.places.filter((item) => item.id !== action.payload.id)
+        }
         default:
             return state;
     }

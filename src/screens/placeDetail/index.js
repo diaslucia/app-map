@@ -7,7 +7,7 @@ import styles from "./styles";
 const PlaceDetail = () => {
     return (
         <View style={styles.container}>
-            <Text>Map</Text>
+            <Text>Detalle</Text>
         </View>
     );
 }

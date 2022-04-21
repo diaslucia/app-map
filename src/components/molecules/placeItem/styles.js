@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
         width: 70,
         height: 70,
         borderRadius: 35,
-        backgroundColor: colors.strongMain,
+        backgroundColor: colors.strongSecondary,
         borderColor: colors.strongSecondary,
         borderWidth: 2,
       },
@@ -36,6 +36,9 @@ const styles = StyleSheet.create({
         color: colors.white,
         fontSize: fontSize.text,
       },
+      delete: {
+        marginHorizontal: margin.small,
+      }
 })
 
 export default styles;
