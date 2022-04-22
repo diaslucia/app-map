@@ -1,14 +1,36 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { ScrollView, Image, View, Text } from 'react-native';
+
+/* Redux */
+import { useSelector } from 'react-redux';
 
 /* Styles */
 import styles from "./styles";
 
-const PlaceDetail = () => {
+/* Components */
+import MapPreview from "../../components/molecules/mapPreview/index";
+
+const PlaceDetail = ({ route }) => {
+    const { placeID } = route.params
+    const place = useSelector(state => state.places.places.find(place => place.id === placeID))
+
+    console.warn(place);
     return (
-        <View style={styles.container}>
-            <Text>Detalle</Text>
-        </View>
+        <ScrollView style={styles.container}>
+            <Image source={{ uri: place.image }} style={styles.image}/>
+            <View style={styles.location}>
+                <View style={styles.titleContainer}>
+                    <Text style={styles.title}>{place.name}</Text>
+                </View>
+                    <Text style={styles.address}>{place.address}</Text>
+                <MapPreview
+                style={styles.map}
+                location={{lat: place.lat, lng: place.lng}}
+                check={true}
+                />
+            </View>
+            
+        </ScrollView>
     );
 }
 

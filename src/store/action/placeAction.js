@@ -8,8 +8,19 @@ import * as FileSystem from "expo-file-system";
 /* SQLite */
 import { insertAddress, fetchAddress, removeAddress } from "../../db/index";
 
-export const addPlace = ( name, image ) => {
+/* Map */
+import MAP from "../../constants/map";
+
+export const addPlace = ( name, image, location ) => {
     return async dispatch => {
+        const response = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${location.lat},${location.lng}&key=${MAP.API_KEY}`,);
+
+        if(!response.ok) throw new Error("[RESPONSE] Something went wrong!");
+        
+        const resData = await response.json();
+        if(!resData.results) throw new Error("[GEOCODE] Something went wrong!");
+
+        const address = resData.results[0].formatted_address;
 
         const fileName= image.split("/").pop()
         const Path = FileSystem.documentDirectory + fileName
@@ -20,15 +31,15 @@ export const addPlace = ( name, image ) => {
                 to: Path
             })
 
-            const result = await insertAddress( name, Path, "address", 13.4, 10.5)
-            dispatch({ type: ADD_PLACE, place: { id: result.insertId, name, image: Path }})
+            const result = await insertAddress( name, Path, address, location.lat, location.lng)
+            dispatch({ type: ADD_PLACE, place: { id: result.insertId, name, image: Path, address: address, coords: { lat: location.lat, lng: location.lng}}})
 
         } catch (err) {
             console.log(err)
             throw err
         }
 
-        dispatch({type: ADD_PLACE, place: {name, image: Path}})
+        dispatch({type: ADD_PLACE, place: { id: result.insertId, name, image: Path, address: address, coords: { lat: location.lat, lng: location.lng} }})
     }
 }
 

@@ -1,19 +1,14 @@
 import React from "react";
-import { TouchableOpacity, Text, View } from "react-native";
+import { TouchableOpacity} from "react-native";
 
-/* Styles */
-import styles from "./styles";
+/* Icons */
+import { AntDesign } from '@expo/vector-icons'; 
 
-const HeaderButton = ({ navigation }) => {
-    const onPress = () => {
-        navigation.push("NewPlace");
-    }
+const HeaderButton = ({ name, onPress }) => {
 
     return(
         <TouchableOpacity onPress={() => onPress()}>
-            <View style={styles.container}>
-                <Text style={styles.text}>+</Text>
-            </View>
+                <AntDesign name={name} size={25} color="white" />
         </TouchableOpacity>
     );
 }

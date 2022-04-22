@@ -15,8 +15,11 @@ const PlaceList = ({ navigation }) => {
     const dispatch = useDispatch();
     const places = useSelector(state => state.places.places);
 
-    const onSelectDetail = () => {
-        navigation.navigate("PlaceDetail");
+    const onSelectDetail = (item) => {
+        navigation.navigate("PlaceDetail", {
+            placeTitle: item.name,
+            placeID: item.id
+        });
     }
 
     const onRemovePlace = (id) => {
@@ -32,8 +35,8 @@ const PlaceList = ({ navigation }) => {
         <PlaceItem
             name={item.name}
             image={item.image}
-            address="Avenida Siempre Vivas"
-            onSelect={() => onSelectDetail()}
+            address={item.address}
+            onSelect={() => onSelectDetail(item)}
             onPress={() => onRemovePlace(item.id)}
         />
     )

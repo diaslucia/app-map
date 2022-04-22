@@ -36,12 +36,14 @@ const MainNavigator = () => {
                 options={({ navigation }) => (
                     {
                         title: "MIS DIRECCIONES",
-                        headerRight: () => <HeaderButton navigation={navigation}/>
+                        headerRight: () => <HeaderButton navigation={navigation} name="pluscircle" onPress={() => navigation.push("NewPlace")}/>
                     }
                 )}/>
             <MainStack.Screen name="PlaceDetail" component={PlaceDetail} options={{ title: "DETALLE" }}/>
             <MainStack.Screen name="NewPlace" component={NewPlace} options={{ title: "NUEVA DIRECCIÓN" }}/>
-            <MainStack.Screen name="Map" component={Map} options={{ title: "MAPA" }}/>
+            <MainStack.Screen
+                name="Map"
+                component={Map} options={{ title: "MAPA" }}/>
         </MainStack.Navigator>
     );
 }
