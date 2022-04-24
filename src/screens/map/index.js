@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useLayoutEffect } from 'react';
+import React, { useState, useLayoutEffect } from 'react';
 
 /* Components */
 import HeaderButton from "../../components/atoms/headerButton/index";
@@ -26,18 +26,13 @@ const Map = props => {
             headerRight: () => (
                 <HeaderButton
                     name="save"
-                    onPress={() => savePickedLocationHandler()}
+                    onPress={() => navigation.navigate("NewPlace", { location: selectedLocation })}
                 />
             )
         })
     }, [navigation])
 
-    const savePickedLocationHandler = useCallback(() => {
-        if(!selectedLocation) {
-            return;
-        }
-        navigation.navigate("NewPlace", { picked: selectedLocation })
-    }, [selectedLocation]);
+    console.warn(selectedLocation);
 
     const selectLocationHandler = event => {
         setSelectedLocation({ 
@@ -46,22 +41,17 @@ const Map = props => {
         })
     }
 
-    let markerCoordinates;
-    if(selectedLocation) {
-        markerCoordinates = {
-            latitude: selectedLocation.lat,
-            longitude: selectedLocation.lng
-        }
-    }
-
     return (
         <MapView
         region={region}
         style={styles.map}
         onPress={selectLocationHandler}
         >
-            { markerCoordinates && (
-                <Marker title="Ubicación seleccionada" coordinate={markerCoordinates}/>
+            { selectedLocation && (
+                <Marker title="Ubicación seleccionada" coordinate={{
+                    latitude: selectedLocation.lat,
+                    longitude: selectedLocation.lng,
+                }}/>
             )}
         </MapView>
     );
