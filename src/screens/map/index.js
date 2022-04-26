@@ -26,13 +26,13 @@ const Map = props => {
             headerRight: () => (
                 <HeaderButton
                     name="save"
-                    onPress={() => navigation.navigate("NewPlace", { location: selectedLocation })}
+                    onPress={() => navigation.navigate('NewPlace')}
                 />
             )
         })
     }, [navigation])
 
-    console.warn(selectedLocation);
+/*     console.warn(selectedLocation); */
 
     const selectLocationHandler = event => {
         setSelectedLocation({ 

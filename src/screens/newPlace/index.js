@@ -13,14 +13,12 @@ import * as placeAction from "../../store/action/placeAction";
 import ImageSelector from "../../components/molecules/imageSelector/index";
 import LocationPicker from "../../components/molecules/locationPicker/index";
 
-const NewPlace = ({ route, navigation }) => {
+const NewPlace = ({ navigation }) => {
     const dispatch = useDispatch();
     const [name, setName] = useState("");
     const [selectedImage, setSelectedImage] = useState();
     const [location, setLocation] = useState([]);
     const handleNameChange = text => setName(text);
-    
-    console.warn(route.params);
 
     const handleSavePlace = () => {
         dispatch(placeAction.addPlace(name, selectedImage, location));
